@@ -1,6 +1,7 @@
 package Logica;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Orden {
@@ -17,6 +18,7 @@ public class Orden {
 		this.Estado=1;
 		fechaCreacion= LocalDateTime.now();
 		this.cliente=cliente;
+		lineas= new ArrayList<Linea>();
 	}
 
 	public int getEstado() {
@@ -55,6 +57,20 @@ public class Orden {
 		impuesto += calcCoste()*0.13;
 		return impuesto;
 	}
-	public double calcTotal
+	public double calcTotal() {
+		double total=0;
+		total += calcCoste();
+		total+= calcImpuesto();
+		return total;
+	}
+	public void addLinea(Producto producto, Double cantidad) throws Exception {
+		Linea l= new Linea(producto, cantidad);
+		lineas.addLast(l);
+	}
+	public void borrarLinea(int numLinea) throws Exception {
+		if (numLinea >= lineas.size())
+			throw new Exception("La linea indicada no existe");
+		lineas.remove(numLinea);
+	}
 	
 }
