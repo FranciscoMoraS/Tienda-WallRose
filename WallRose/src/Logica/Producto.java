@@ -19,6 +19,7 @@ public class Producto {
 		this.Cantidad=cantidad;
 		this.Precio=precio;
 		this.ID=Consecutivo;
+		Consecutivo++;
 	}
 
 	public String getNombre() {
