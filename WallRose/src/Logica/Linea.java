@@ -21,9 +21,13 @@ public class Linea {
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
-	public void setCantidad(double cantidad) {
-		if (cantidad > producto.getCantidad())
-			throw new Exception("No hay suficiente producto");
+	public void setCantidad(double cantidad) throws Exception {
+		try {
+			if (cantidad > producto.getCantidad())
+				throw new Exception("No hay suficiente producto");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.cantidad = cantidad;
 	}
 	public double getCoste() {
