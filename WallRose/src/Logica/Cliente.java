@@ -1,5 +1,7 @@
 package Logica;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -36,8 +38,12 @@ public class Cliente {
 		return ID;
 	}
 
-	public Map<Integer, Orden> getOrdenes() {
-		return Ordenes;
+	public List<Orden> getOrdenes() {
+		List<Orden> l = new ArrayList<Orden>();
+		for (int i=0; i<Ordenes.size(); i++) {
+			l.add(Ordenes.get(i));
+		}
+		return l;
 	}
 	
 }

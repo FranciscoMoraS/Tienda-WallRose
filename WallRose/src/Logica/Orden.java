@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//metodo get linea y getcantidad lineas
 public class Orden {
 	private static int Consecutivo;
 	private int Estado; // 1-iniciada, 2-pendiente, 3-terminada
