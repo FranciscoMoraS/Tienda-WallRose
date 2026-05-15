@@ -89,6 +89,12 @@ public class ControladoraWallRose {
 		if (!ordenes.containsKey(numeroOrden))
 			throw new Exception("Orden no encontrada.");
 	}
+	private void verificarLineaOrdenExistente(Integer numeroOrden, Integer numeroLinea)throws Exception {
+		Orden orden = ordenes.get(numeroOrden);
+		if (numeroLinea < 0 || numeroLinea >= orden.getCantLineas())
+			throw new Exception("Número de línea no válido.");
+	}
+
 
 
 	public List<Orden> obtenerListadoOrdenesIniciadasCliente (String idCliente) throws Exception {
@@ -223,11 +229,27 @@ public class ControladoraWallRose {
 		Producto producto = productos.get(codigoProducto);
 		orden.addLinea(producto, cantidad);
 	}
-	public void actualizarLineaOrden(int numOrden, int numLinea, int codigoProducto, double cantidad) {
-		
+	public void actualizarLineaOrden(int numOrden, int numLinea, int codigoProducto, double cantidad) throws Exception {
+		verificarOrdenExistente(numOrden);
+		verificarLineaOrdenExistente(numOrden, numLinea);
+		verificarProductoExistente(codigoProducto);
+		Orden orden = ordenes.get(numOrden);
+		Producto producto = productos.get(codigoProducto);
+		Linea linea = orden.getLinea(numLinea);
+		linea.setProducto(producto);
+		linea.setCantidad(cantidad);
 	}
-//		+borrarLineaOrden(int numOrden int numLinea)
-//		+borrarOrden(int numOrden)
+	public void borrarLineaOrden(int numOrden, int numLinea) throws Exception {
+		verificarOrdenExistente(numOrden);
+		verificarLineaOrdenExistente(numOrden, numLinea);
+		Orden orden = ordenes.get(numOrden);
+		orden.borrarLinea(numLinea);		
+	}
+	public void borrarOrden(int numOrden) throws Exception {
+		verificarOrdenExistente(numOrden);
+		ordenes.remove(numOrden);
+
+	}
 
 	
 	

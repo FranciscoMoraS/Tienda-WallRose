@@ -74,5 +74,10 @@ public class Orden {
 			throw new Exception("La linea indicada no existe");
 		lineas.remove(numLinea);
 	}
-	
+	public int getCantLineas() {
+		return lineas.size();
+	}
+	public Linea getLinea(int numLinea) {
+		return lineas.get(numLinea);
+	}
 }
