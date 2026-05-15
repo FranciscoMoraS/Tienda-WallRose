@@ -45,5 +45,11 @@ public class Cliente {
 		}
 		return l;
 	}
+	public Map<Integer, Orden> getDiccionarioOrdenes(){
+		return Ordenes;
+	}
+	public void agregarOrden(Orden orden) {
+		Ordenes.put(orden.getNumero(), orden);
+	}
 	
 }
